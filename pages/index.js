@@ -1,52 +1,44 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
-import styles from "../styles/Home.module.css";
+import Image from "next/image"
+import { useRouter } from "next/router"
+import styles from "../styles/Home.module.css"
 
-export default function Home() {
+const Home = () => {
+  const router = useRouter()
+
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://thirdweb.com/">thirdweb</a>!
-        </h1>
-
-        <p className={styles.description}>
-          Get started by configuring your desired network in{" "}
-          <code className={styles.code}>pages/_app.js</code>, then modify the{" "}
-          <code className={styles.code}>pages/index.js</code> file!
-        </p>
-
-        <div className={styles.connect}>
-          <ConnectWallet />
+      {/* Top Section */}
+      <h1 className={styles.h1}> Custom Staking Contract</h1>
+      <div className={styles.nftBoxGrid}>
+        <div
+          className={styles.optionSelectBox}
+          role="button"
+          onClick={() => router.push("/mint")}
+        >
+          {/* Mint a new NFT */}
+          <Image src="/smile.png" alt="drop" width={64} height={64} />
+          <h2 className={styles.selectBoxTitle}>Mint a new NFT</h2>
+          <p className={styles.selectBoxDescription}>
+            Use the Edition Drop Contract to claim an NFT from the collection.
+          </p>
         </div>
 
-        <div className={styles.grid}>
-          <a href="https://portal.thirdweb.com/" className={styles.card}>
-            <h2>Portal &rarr;</h2>
-            <p>
-              Guides, references and resources that will help you build with
-              thirdweb.
-            </p>
-          </a>
-
-          <a href="https://thirdweb.com/dashboard" className={styles.card}>
-            <h2>Dashboard &rarr;</h2>
-            <p>
-              Deploy, configure and manage your smart contracts from the
-              dashboard.
-            </p>
-          </a>
-
-          <a
-            href="https://portal.thirdweb.com/templates"
-            className={styles.card}
-          >
-            <h2>Templates &rarr;</h2>
-            <p>
-              Discover and clone template projects showcasing thirdweb features.
-            </p>
-          </a>
+        <div
+          className={styles.optionSelectBox}
+          role="button"
+          onClick={() => router.push("/stake")}
+        >
+          {/* Staking an NFT */}
+          <Image src="/token.png" alt="token" width={64} height={64} />
+          <h2 className={styles.selectBoxTitle}>Stake Your NFTs</h2>
+          <p className={styles.selectBoxDescription}>
+            Use the custom staking contract deployed via <b>thirdweb Deploy</b>{" "}
+            to stake your NFTs, and earn tokens from the <b>Token</b> contract.
+          </p>
         </div>
-      </main>
+      </div>
     </div>
-  );
+  )
 }
+
+export default Home
